@@ -17,6 +17,9 @@
         <button class="voice-input" title="Voice Input">🎤</button>
         <button class="settings-btn" title="Settings">⚙️</button>
         
+        <!-- Add history toggle button -->
+        <button class="history-toggle" title="Toggle History">📜</button>
+        
         <div class="display">
             <div class="input">0</div>
             <div class="result"></div>
@@ -290,7 +293,13 @@
                 </div>
             </div>
             <ul class="history-list">
+                <!-- If history is empty, show this -->
                 <li class="empty-history">No calculations yet</li>
+                
+                <!-- Example history items (these will be added dynamically by JavaScript) -->
+                <!-- <li>2 + 2 = 4</li>
+                <li>5 * 6 = 30</li>
+                <li>10 / 2 = 5</li> -->
             </ul>
         </div>
         

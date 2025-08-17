@@ -801,45 +801,37 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Update history list
     function updateHistory() {
-        if (!historyList) return;
-        
-        // Clear the list
+        // Clear the "no calculations yet" message
         historyList.innerHTML = '';
         
         // Add each history item
-        history.forEach((entry, index) => {
-            const li = document.createElement('li');
-            li.textContent = entry;
-            
-            // Add click event to reuse the calculation
-            li.addEventListener('click', () => {
-                const parts = entry.split(' = ');
-                if (parts.length === 2) {
-                    input = parts[0];
-                    result = parts[1].replace(/,/g, ''); // Remove commas
-                    updateDisplay();
-                }
-            });
-            
-            historyList.appendChild(li);
-        });
-        
-        // Show empty message if history is empty
         if (history.length === 0) {
             const li = document.createElement('li');
             li.textContent = 'No calculations yet';
             li.classList.add('empty-history');
             historyList.appendChild(li);
+        } else {
+            history.forEach(entry => {
+                const li = document.createElement('li');
+                li.textContent = entry;
+                
+                // Add click event to reuse the calculation
+                li.addEventListener('click', () => {
+                    const parts = entry.split(' = ');
+                    if (parts.length === 2) {
+                        input = parts[0];
+                        result = parts[1];
+                        updateDisplay();
+                    }
+                });
+                
+                historyList.appendChild(li);
+            });
         }
         
-        // Show/hide clear and export buttons
-        if (clearHistoryBtn) {
-            clearHistoryBtn.style.display = history.length ? 'block' : 'none';
-        }
-        
-        if (exportHistoryBtn) {
-            exportHistoryBtn.style.display = history.length ? 'block' : 'none';
-        }
+        // Show/hide export and clear buttons
+        clearHistoryBtn.style.display = history.length ? 'block' : 'none';
+        exportHistoryBtn.style.display = history.length ? 'block' : 'none';
     }
     
     // Export history to file
@@ -966,4 +958,12 @@ document.addEventListener('DOMContentLoaded', () => {
             hint.classList.remove('show');
         }, 1500);
     }
+    
+    // Add to script.js
+    const historyToggle = document.querySelector('.history-toggle');
+    const historySection = document.querySelector('.history');
+
+    historyToggle.addEventListener('click', () => {
+      historySection.classList.toggle('collapsed');
+    });
 });

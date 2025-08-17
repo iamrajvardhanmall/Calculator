@@ -160,6 +160,25 @@ body.dark-mode {
   background: rgba(var(--accent-color), 0.2);
 }
 
+.history-toggle {
+  position: absolute;
+  top: 18px;
+  right: 115px; /* Position next to other buttons */
+  background-color: transparent;
+  color: var(--text-color);
+  border: var(--glass-border);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
 .dark-mode-toggle:hover, .settings-btn:hover {
   background-color: var(--button-hover);
   transform: rotate(30deg);
@@ -983,6 +1002,11 @@ body.theme-premium .calculator::after {
     right: 97px;
   }
   
+  .history-toggle {
+    top: 15px;
+    right: 97px;
+  }
+  
   .mode-indicator {
     font-size: 0.7rem;
     padding: 3px 10px;
@@ -1019,22 +1043,19 @@ body.theme-premium .calculator::after {
   padding: 18px;
   max-height: 200px;
   overflow-y: auto;
-  transition: all var(--transition-normal) ease;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
   border: var(--glass-border);
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .history-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
-}
-
-.history-actions {
-  display: flex;
-  gap: 8px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .history h3 {
@@ -1044,6 +1065,11 @@ body.theme-premium .calculator::after {
   font-weight: 500;
 }
 
+.history-actions {
+  display: flex;
+  gap: 8px;
+}
+
 .clear-history, .export-history {
   padding: 6px 10px;
   font-size: 0.8rem;
@@ -1051,7 +1077,8 @@ body.theme-premium .calculator::after {
   color: var(--display-bg);
   border: var(--glass-border);
   border-radius: 16px;
-  transition: all var(--transition-fast) ease;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .clear-history:hover, .export-history:hover {
@@ -1062,22 +1089,23 @@ body.theme-premium .calculator::after {
   list-style: none;
   padding: 0;
   margin: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .history-list li {
   color: var(--display-bg);
-  padding: 12px 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: all var(--transition-fast) ease;
-  border-radius: 6px;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid var(--accent-color);
 }
 
 .history-list li:hover:not(.empty-history) {
   background-color: rgba(255, 255, 255, 0.1);
-  padding-left: 12px;
+  transform: translateX(5px);
 }
 
 .empty-history {
@@ -1085,8 +1113,16 @@ body.theme-premium .calculator::after {
   opacity: 0.7;
   cursor: default;
   padding: 16px 0 !important;
+  background-color: transparent !important;
+  border-left: none !important;
+  font-style: italic;
 }
 
-.history-list li:last-child {
-  border-bottom: none;
+/* For collapsible history */
+.history.collapsed {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 10px;
+  overflow: hidden;
 }
