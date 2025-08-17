@@ -966,4 +966,13 @@ document.addEventListener('DOMContentLoaded', () => {
     historyToggle.addEventListener('click', () => {
       historySection.classList.toggle('collapsed');
     });
+    
+    // Back button functionality
+    const backButton = document.querySelector('.back-button');
+    if (backButton) {
+        backButton.addEventListener('click', () => {
+            // Close the settings panel - same function as the X button
+            settingsPanel.classList.remove('active');
+        });
+    }
 });

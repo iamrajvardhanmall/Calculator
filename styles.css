@@ -129,7 +129,8 @@ body.dark-mode {
 
 .dark-mode-toggle, .settings-btn, .voice-input {
   position: absolute;
-  background-color: transparent;
+  top: 18px;
+  background-color: rgba(255, 255, 255, 0.15);
   color: var(--text-color);
   border: var(--glass-border);
   border-radius: 50%;
@@ -142,22 +143,23 @@ body.dark-mode {
   cursor: pointer;
   transition: all var(--transition-normal) ease;
   z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .dark-mode-toggle {
-  top: 18px;
   right: 18px;
 }
 
 .settings-btn {
-  top: 18px;
   right: 65px;
 }
 
 .voice-input {
-  top: 18px;
   right: 112px;
-  background: rgba(var(--accent-color), 0.2);
+}
+
+.history-toggle {
+  right: 159px;
 }
 
 .history-toggle {
@@ -267,7 +269,11 @@ body.dark-mode {
 
 .mode-btn, .tab {
   flex: 1;
-  padding: 8px;
+  padding: 12px 8px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   background-color: var(--button-bg);
   color: var(--text-color);
@@ -307,6 +313,7 @@ body.dark-mode {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
+  margin-top: 15px;
 }
 
 .scientific-mode {
@@ -318,9 +325,11 @@ body.dark-mode {
 }
 
 button {
-  padding: 18px 10px;
-  font-size: 1.1rem;
-  border: none;
+  padding: 16px 10px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: var(--button-radius);
   background-color: var(--button-bg);
   color: var(--text-color);
@@ -618,12 +627,51 @@ button:active {
   cursor: pointer;
   padding: 5px;
   box-shadow: none;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
 }
 
 .close-settings:hover {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.1);
   transform: none;
   color: var(--accent-color);
+}
+
+.settings-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.back-button {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  box-shadow: none;
+  border: var(--glass-border);
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(-3px);
+  box-shadow: none;
+}
+
+.back-button:active {
+  transform: translateX(-1px);
 }
 
 .settings-group {
@@ -1030,99 +1078,653 @@ body.theme-premium .calculator::after {
   }
 }
 
-/* Fix for buttons in scientific mode */
-.scientific-mode {
-  grid-template-rows: repeat(7, 1fr);
+/* Base responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+  
+  .calculator {
+    width: 100%;
+    max-width: 500px;
+    padding: 24px 20px;
+    margin: 0 auto;
+  }
+  
+  .buttons {
+    gap: 10px;
+  }
+  
+  button {
+    padding: 16px 8px;
+  }
+  
+  .theme-selector {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 10px;
+  }
+  
+  .theme-selector .theme-btn {
+    margin-bottom: 8px;
+  }
 }
 
-/* Fix for history area styles */
-.history {
-  margin-top: 25px;
-  background-color: var(--secondary-color);
+/* Tablet adjustments */
+@media (min-width: 481px) and (max-width: 768px) {
+  .input {
+    font-size: 2rem;
+  }
+  
+  .scientific-mode {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Enhanced mobile adjustments */
+@media (max-width: 480px) {
+  .calculator {
+    width: 100%;
+    max-width: 340px;
+    padding: 18px 12px;
+    border-radius: 12px;
+  }
+  
+  .display {
+    padding: 16px;
+    margin-top: 38px;
+    margin-bottom: 15px;
+  }
+  
+  .input {
+    font-size: 1.6rem;
+    height: 38px;
+  }
+  
+  .result {
+    font-size: 1rem;
+    height: 25px;
+  }
+  
+  .buttons {
+    gap: 8px;
+  }
+  
+  button {
+    padding: 12px 6px;
+    font-size: 0.95rem;
+    border-radius: 10px;
+  }
+  
+  .memory, .function, .constant {
+    font-size: 0.75rem;
+  }
+  
+  /* Control buttons positioning */
+  .dark-mode-toggle, .settings-btn, .voice-input, .history-toggle {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+  
+  .dark-mode-toggle {
+    top: 12px;
+    right: 12px;
+  }
+  
+  .settings-btn {
+    top: 12px;
+    right: 50px;
+  }
+  
+  .voice-input {
+    top: 12px;
+    right: 88px;
+  }
+  
+  .history-toggle {
+    top: 12px;
+    right: 126px;
+  }
+  
+  .mode-indicator {
+    top: 12px;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+  }
+  
+  /* Tab styles for mobile */
+  .calculator-tabs {
+    flex-wrap: wrap;
+  }
+  
+  .tab {
+    padding: 8px 4px;
+    font-size: 0.8rem;
+  }
+  
+  /* Finance calculator on mobile */
+  .finance-inputs {
+    gap: 10px;
+  }
+  
+  .finance-label {
+    font-size: 0.85rem;
+  }
+  
+  .finance-input {
+    padding: 10px;
+    font-size: 1rem;
+  }
+  
+  .finance-result {
+    padding: 12px;
+  }
+  
+  .finance-result-row {
+    flex-direction: column;
+    padding: 6px 0;
+  }
+  
+  .finance-result-value {
+    margin-top: 4px;
+    font-size: 1rem;
+  }
+  
+  /* Date calculator on mobile */
+  .date-calculator h3 {
+    font-size: 1rem;
+  }
+  
+  .date-inputs, .date-modifier {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  /* Settings panel on mobile */
+  .settings-panel {
+    padding: 15px;
+  }
+  
+  .settings-header h2 {
+    font-size: 1.1rem;
+  }
+  
+  .settings-group h3 {
+    font-size: 0.9rem;
+  }
+  
+  .setting-label {
+    font-size: 0.85rem;
+  }
+  
+  .back-button {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+  
+  .custom-shortcuts {
+    grid-template-columns: 1fr;
+  }
+  
+  /* History on mobile */
+  .history {
+    padding: 15px;
+    max-height: 180px;
+  }
+  
+  .history h3 {
+    font-size: 1rem;
+  }
+  
+  .history-list li {
+    padding: 10px 8px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+  .calculator {
+    padding: 15px 10px;
+    max-width: 300px;
+  }
+  
+  .display {
+    padding: 12px;
+    margin-top: 42px;
+  }
+  
+  .input {
+    font-size: 1.4rem;
+    height: 32px;
+  }
+  
+  .result {
+    font-size: 0.9rem;
+    height: 22px;
+  }
+  
+  button {
+    padding: 10px 5px;
+    font-size: 0.85rem;
+  }
+  
+  .memory, .function, .operator, .constant {
+    font-size: 0.7rem;
+  }
+  
+  /* Stack control buttons on very small screens */
+  .dark-mode-toggle, .settings-btn, .voice-input, .history-toggle {
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+  }
+  
+  .dark-mode-toggle {
+    top: 10px;
+    right: 10px;
+  }
+  
+  .settings-btn {
+    top: 10px;
+    right: 45px;
+  }
+  
+  .voice-input {
+    top: 10px;
+    right: 80px;
+  }
+  
+  .history-toggle {
+    top: 10px;
+    right: 115px;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 480px) and (orientation: landscape) {
+  body {
+    align-items: flex-start;
+    padding: 10px;
+  }
+  
+  .calculator {
+    max-height: 95vh;
+    overflow-y: auto;
+    padding: 15px;
+  }
+  
+  .display {
+    margin-top: 40px;
+    margin-bottom: 15px;
+    padding: 12px;
+  }
+  
+  .buttons {
+    gap: 6px;
+  }
+  
+  button {
+    padding: 8px 6px;
+    font-size: 0.85rem;
+  }
+  
+  .history {
+    max-height: 120px;
+  }
+  
+  /* Compact layout for landscape */
+  .scientific-mode {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+  }
+  
+  /* Adjust panels for landscape */
+  .finance-inputs, .date-inputs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* High-resolution screens (4K, etc.) */
+@media (min-width: 1900px) {
+  .calculator {
+    width: 500px;
+    padding: 35px;
+    border-radius: 24px;
+  }
+  
+  .display {
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 18px;
+  }
+  
+  .input {
+    font-size: 2.6rem;
+    height: 60px;
+  }
+  
+  .result {
+    font-size: 1.6rem;
+    height: 36px;
+  }
+  
+  button {
+    padding: 24px 15px;
+    font-size: 1.3rem;
+    border-radius: 16px;
+  }
+  
+  .memory, .function {
+    font-size: 1.1rem;
+  }
+  
+  .history {
+    max-height: 280px;
+    padding: 25px;
+  }
+  
+  .history-list li {
+    padding: 15px;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+  }
+  
+  .calculator {
+    width: 100%;
+    max-width: none;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    padding: 15px;
+  }
+  
+  .dark-mode-toggle, .settings-btn, .voice-input, .history-toggle {
+    display: none;
+  }
+  
+  .display {
+    border: 1px solid #ddd;
+    box-shadow: none;
+  }
+  
+  .buttons, .calculator-modes, .calculator-tabs {
+    display: none;
+  }
+  
+  .history {
+    max-height: none;
+    border: 1px solid #ddd;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+  
+  .history-actions {
+    display: none;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Improved button touch targets for mobile */
+@media (max-width: 768px) and (hover: none) {
+  button {
+    min-height: 44px; /* Minimum touch target size */
+  }
+  
+  .tab, .mode-btn {
+    min-height: 40px;
+  }
+  
+  .dark-mode-toggle, .settings-btn, .voice-input, .history-toggle {
+    min-width: 40px;
+    min-height: 40px;
+  }
+}
+
+/* Control button alignment fixes */
+.dark-mode-toggle, .settings-btn, .voice-input, .history-toggle {
+  position: absolute;
+  top: 18px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--text-color);
+  border: var(--glass-border);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all var(--transition-normal) ease;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode-toggle {
+  right: 18px;
+}
+
+.settings-btn {
+  right: 65px;
+}
+
+.voice-input {
+  right: 112px;
+}
+
+.history-toggle {
+  right: 159px;
+}
+
+/* Calculator buttons grid alignment */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 15px;
+}
+
+/* Fix button sizing to ensure consistent height/width */
+button {
+  padding: 16px 10px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: var(--button-radius);
-  padding: 18px;
-  max-height: 200px;
-  overflow-y: auto;
-  transition: all 0.3s ease;
+}
+
+/* Ensure consistent spacing for tabs */
+.calculator-modes, .calculator-tabs {
+  display: flex;
+  margin-bottom: 15px;
+  border-radius: var(--button-radius);
+  overflow: hidden;
   border: var(--glass-border);
   position: relative;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1;
 }
 
-.history-header {
+.mode-btn, .tab {
+  flex: 1;
+  padding: 12px 8px;
+  height: auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  justify-content: center;
 }
 
-.history h3 {
-  margin: 0;
-  color: var(--display-bg);
-  font-size: 1.1rem;
-  font-weight: 500;
+/* Fix spacing for calculator display */
+.display {
+  margin-top: 60px; /* Ensure enough space for control buttons */
+  margin-bottom: 20px;
 }
 
-.history-actions {
+/* Responsive fixes for button alignment */
+@media (max-width: 480px) {
+  /* Control buttons positioning for mobile */
+  .dark-mode-toggle, .settings-btn, .voice-input, .history-toggle {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    top: 12px;
+  }
+  
+  .dark-mode-toggle {
+    right: 12px;
+  }
+  
+  .settings-btn {
+    right: 52px;
+  }
+  
+  .voice-input {
+    right: 92px;
+  }
+  
+  .history-toggle {
+    right: 132px;
+  }
+  
+  /* Adjust display margin for mobile */
+  .display {
+    margin-top: 50px;
+  }
+  
+  /* Fix button height for mobile */
+  button {
+    height: 50px;
+    padding: 12px 6px;
+  }
+  
+  /* Fix tab button spacing for mobile */
+  .mode-btn, .tab {
+    padding: 10px 5px;
+  }
+  
+  /* Ensure buttons maintain equal size in grid */
+  .buttons {
+    gap: 8px;
+  }
+}
+
+/* Fix for very small screens */
+@media (max-width: 360px) {
+  .dark-mode-toggle, .settings-btn, .voice-input, .history-toggle {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+    top: 10px;
+  }
+  
+  .dark-mode-toggle {
+    right: 10px;
+  }
+  
+  .settings-btn {
+    right: 45px;
+  }
+  
+  .voice-input {
+    right: 80px;
+  }
+  
+  .history-toggle {
+    right: 115px;
+  }
+  
+  /* Further reduce button height */
+  button {
+    height: 45px;
+    padding: 10px 5px;
+  }
+  
+  /* Adjust display for smaller screens */
+  .display {
+    margin-top: 45px;
+    padding: 12px;
+  }
+}
+
+/* Fix for landscape mode */
+@media (max-height: 480px) and (orientation: landscape) {
+  .buttons {
+    gap: 6px;
+  }
+  
+  button {
+    height: 40px;
+    padding: 8px 5px;
+  }
+  
+  /* Create more compact layout for landscape */
+  .display {
+    margin-top: 50px;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  .calculator-modes, .calculator-tabs {
+    margin-bottom: 10px;
+  }
+  
+  .mode-btn, .tab {
+    padding: 8px 5px;
+  }
+}
+
+/* Ensure consistent button layout in scientific mode */
+.scientific-mode {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* Fix specific button types to ensure consistent sizing */
+.memory, .function, .operator, .bracket, .constant, .clear, .equals {
+  height: 60px;
+}
+
+@media (max-width: 480px) {
+  .memory, .function, .operator, .bracket, .constant, .clear, .equals {
+    height: 50px;
+  }
+}
+
+@media (max-width: 360px) {
+  .memory, .function, .operator, .bracket, .constant, .clear, .equals {
+    height: 45px;
+  }
+}
+
+/* Fix for history section alignment */
+.history {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Fix settings panel button alignment */
+.settings-panel button {
+  height: auto;
+}
+
+.back-button, .close-settings {
   display: flex;
-  gap: 8px;
-}
-
-.clear-history, .export-history {
-  padding: 6px 10px;
-  font-size: 0.8rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: var(--display-bg);
-  border: var(--glass-border);
-  border-radius: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.clear-history:hover, .export-history:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.history-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.history-list li {
-  color: var(--display-bg);
-  padding: 12px 10px;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-left: 3px solid var(--accent-color);
-}
-
-.history-list li:hover:not(.empty-history) {
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: translateX(5px);
-}
-
-.empty-history {
-  text-align: center;
-  opacity: 0.7;
-  cursor: default;
-  padding: 16px 0 !important;
-  background-color: transparent !important;
-  border-left: none !important;
-  font-style: italic;
-}
-
-/* For collapsible history */
-.history.collapsed {
-  max-height: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-  margin-top: 10px;
-  overflow: hidden;
+  align-items: center;
+  justify-content: center;
 }
