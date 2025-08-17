@@ -522,6 +522,44 @@ document.addEventListener('DOMContentLoaded', () => {
         handleSwipe();
     });
     
+    // Particle Effects
+    function createParticles() {
+        const container = document.querySelector('.particles-container');
+        if (!container) return;
+        
+        const colors = ['#4086f4', '#f86734', '#22c55e', '#9333ea'];
+        
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random position, size and color
+            const size = Math.random() * 8 + 4;
+            const x = Math.random() * container.offsetWidth;
+            const y = container.offsetHeight - 100;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            particle.style.background = color;
+            
+            // Random animation duration and delay
+            const duration = Math.random() * 1 + 0.5;
+            const delay = Math.random() * 0.2;
+            particle.style.animationDuration = `${duration}s`;
+            particle.style.animationDelay = `${delay}s`;
+            
+            container.appendChild(particle);
+            
+            // Remove particle after animation
+            setTimeout(() => {
+                particle.remove();
+            }, (duration + delay) * 1000);
+        }
+    }
+    
     // Button click handler
     function handleButtonClick(value) {
         // Save state for undo
@@ -867,5 +905,65 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check system preference for dark mode
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         toggleDarkMode();
+    }
+    
+    // Add this to your script.js
+    function updateShortcutsDisplay() {
+        const shortcutsContainer = document.getElementById('custom-shortcuts');
+        if (!shortcutsContainer) return;
+        
+        shortcutsContainer.innerHTML = '';
+        
+        const shortcuts = JSON.parse(localStorage.getItem('calculatorShortcuts') || '[]');
+        shortcuts.forEach((shortcut, index) => {
+            const btn = document.createElement('button');
+            btn.classList.add('shortcut-btn');
+            btn.innerHTML = `${shortcut.expression}<span class="shortcut-label">${shortcut.label}</span>`;
+            
+            btn.addEventListener('click', () => {
+                input = shortcut.expression;
+                updateDisplay();
+            });
+            
+            shortcutsContainer.appendChild(btn);
+        });
+    }
+    
+    // Add this to your script.js
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const tabs = document.querySelectorAll('.tab');
+        const activeTab = document.querySelector('.tab.active');
+        
+        if (!activeTab || !tabs.length) return;
+        
+        const activeIndex = Array.from(tabs).indexOf(activeTab);
+        
+        if (touchEndX < touchStartX - swipeThreshold) {
+            // Swipe left - next tab
+            const nextIndex = (activeIndex + 1) % tabs.length;
+            tabs[nextIndex].click();
+            
+            showGestureHint('left');
+        }
+        
+        if (touchEndX > touchStartX + swipeThreshold) {
+            // Swipe right - previous tab
+            const prevIndex = (activeIndex - 1 + tabs.length) % tabs.length;
+            tabs[prevIndex].click();
+            
+            showGestureHint('right');
+        }
+    }
+    
+    function showGestureHint(direction) {
+        const hint = document.querySelector('.gesture-hint');
+        if (!hint) return;
+        
+        hint.classList.add('show');
+        
+        setTimeout(() => {
+            hint.classList.remove('show');
+        }, 1500);
     }
 });

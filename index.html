@@ -118,180 +118,186 @@
         
         <!-- Unit converter panel (initially hidden) -->
         <div class="converter-panel hidden" data-panel="unit">
-          <div class="converter-container">
-            <select class="converter-select" id="unit-from">
-              <option value="cm">Centimeter (cm)</option>
-              <option value="m">Meter (m)</option>
-              <option value="km">Kilometer (km)</option>
-              <option value="in">Inch (in)</option>
-              <option value="ft">Foot (ft)</option>
-              <option value="mi">Mile (mi)</option>
-            </select>
-            <select class="converter-select" id="unit-to">
-              <option value="cm">Centimeter (cm)</option>
-              <option value="m" selected>Meter (m)</option>
-              <option value="km">Kilometer (km)</option>
-              <option value="in">Inch (in)</option>
-              <option value="ft">Foot (ft)</option>
-              <option value="mi">Mile (mi)</option>
-            </select>
-            <input type="number" class="converter-input" id="unit-from-value" placeholder="Enter value">
-            <input type="text" class="converter-input" id="unit-to-value" readonly>
-          </div>
-          <button class="convert-btn">Convert</button>
+            <div class="converter-container">
+                <select class="converter-select" id="unit-from">
+                    <option value="cm">Centimeter (cm)</option>
+                    <option value="m">Meter (m)</option>
+                    <option value="km">Kilometer (km)</option>
+                    <option value="in">Inch (in)</option>
+                    <option value="ft">Foot (ft)</option>
+                    <option value="mi">Mile (mi)</option>
+                </select>
+                <select class="converter-select" id="unit-to">
+                    <option value="cm">Centimeter (cm)</option>
+                    <option value="m" selected>Meter (m)</option>
+                    <option value="km">Kilometer (km)</option>
+                    <option value="in">Inch (in)</option>
+                    <option value="ft">Foot (ft)</option>
+                    <option value="mi">Mile (mi)</option>
+                </select>
+                <input type="number" class="converter-input" id="unit-from-value" placeholder="Enter value">
+                <input type="text" class="converter-input" id="unit-to-value" readonly>
+            </div>
+            <button class="convert-btn">Convert</button>
         </div>
         
         <!-- Finance calculator panel (initially hidden) -->
         <div class="finance-panel hidden" data-panel="finance">
-          <div class="finance-inputs">
-            <div class="finance-input-group">
-              <label class="finance-label">Loan Amount</label>
-              <input type="number" class="finance-input" id="loan-amount" placeholder="e.g. 200000">
+            <div class="finance-inputs">
+                <div class="finance-input-group">
+                    <label class="finance-label">Loan Amount</label>
+                    <input type="number" class="finance-input" id="loan-amount" placeholder="e.g. 200000">
+                </div>
+                <div class="finance-input-group">
+                    <label class="finance-label">Interest Rate (%)</label>
+                    <input type="number" class="finance-input" id="interest-rate" placeholder="e.g. 5.5">
+                </div>
+                <div class="finance-input-group">
+                    <label class="finance-label">Term (years)</label>
+                    <input type="number" class="finance-input" id="loan-term" placeholder="e.g. 30">
+                </div>
             </div>
-            <div class="finance-input-group">
-              <label class="finance-label">Interest Rate</label>
-              <input type="number" class="finance-input" id="interest-rate" placeholder="e.g. 5.5">
+            <button class="calculate-loan">Calculate</button>
+            
+            <div class="finance-result">
+                <div class="finance-result-row">
+                    <span class="finance-result-label">Monthly Payment:</span>
+                    <span class="finance-result-value" id="monthly-payment">$0.00</span>
+                </div>
+                <div class="finance-result-row">
+                    <span class="finance-result-label">Total Interest:</span>
+                    <span class="finance-result-value" id="total-interest">$0.00</span>
+                </div>
+                <div class="finance-result-row">
+                    <span class="finance-result-label">Total Payment:</span>
+                    <span class="finance-result-value" id="total-payment">$0.00</span>
+                </div>
             </div>
-            <div class="finance-input-group">
-              <label class="finance-label">Term (years)</label>
-              <input type="number" class="finance-input" id="loan-term" placeholder="e.g. 30">
-            </div>
-          </div>
-          <button class="calculate-loan">Calculate</button>
-          
-          <div class="finance-result">
-            <div class="finance-result-row">
-              <span class="finance-result-label">Monthly Payment:</span>
-              <span class="finance-result-value" id="monthly-payment">$0.00</span>
-            </div>
-            <div class="finance-result-row">
-              <span class="finance-result-label">Total Interest:</span>
-              <span class="finance-result-value" id="total-interest">$0.00</span>
-            </div>
-            <div class="finance-result-row">
-              <span class="finance-result-label">Total Payment:</span>
-              <span class="finance-result-value" id="total-payment">$0.00</span>
-            </div>
-          </div>
         </div>
         
         <!-- Date calculator panel (initially hidden) -->
         <div class="date-panel hidden" data-panel="date">
-          <div class="date-calculator">
-            <h3>Calculate Days Between Dates</h3>
-            <div class="date-inputs">
-              <input type="date" id="start-date" class="date-input">
-              <input type="date" id="end-date" class="date-input">
+            <div class="date-calculator">
+                <h3>Calculate Days Between Dates</h3>
+                <div class="date-inputs">
+                    <input type="date" id="start-date" class="date-input">
+                    <input type="date" id="end-date" class="date-input">
+                </div>
+                <button class="calculate-dates">Calculate</button>
+                <div class="date-result" id="date-result"></div>
+                
+                <h3 class="mt-4">Add/Subtract Days</h3>
+                <div class="date-modifier">
+                    <input type="date" id="base-date" class="date-input">
+                    <input type="number" id="days-count" class="date-input" placeholder="Number of days">
+                    <select id="add-subtract" class="date-select">
+                        <option value="add">Add</option>
+                        <option value="subtract">Subtract</option>
+                    </select>
+                </div>
+                <button class="calculate-modified-date">Calculate</button>
+                <div class="date-result" id="modified-date-result"></div>
             </div>
-            <button class="calculate-dates">Calculate</button>
-            <div class="date-result" id="date-result"></div>
-            
-            <h3 class="mt-4">Add/Subtract Days</h3>
-            <div class="date-modifier">
-              <input type="date" id="base-date" class="date-input">
-              <input type="number" id="days-count" class="date-input" placeholder="Number of days">
-              <select id="add-subtract" class="date-select">
-                <option value="add">Add</option>
-                <option value="subtract">Subtract</option>
-              </select>
-            </div>
-            <button class="calculate-modified-date">Calculate</button>
-            <div class="date-result" id="modified-date-result"></div>
-          </div>
         </div>
         
         <!-- Settings panel -->
         <div class="settings-panel">
-          <div class="settings-header">
-            <h2>Settings</h2>
-            <button class="close-settings">×</button>
-          </div>
-          
-          <div class="settings-group">
-            <h3>Display</h3>
-            <div class="setting-item">
-              <span class="setting-label">Decimal Precision</span>
-              <select class="setting-select" id="decimal-precision">
-                <option value="0">0 digits</option>
-                <option value="2" selected>2 digits</option>
-                <option value="4">4 digits</option>
-                <option value="6">6 digits</option>
-                <option value="8">8 digits</option>
-              </select>
+            <div class="settings-header">
+                <h2>Settings</h2>
+                <button class="close-settings">×</button>
             </div>
-            <div class="setting-item">
-              <span class="setting-label">Thousands Separator</span>
-              <label class="toggle-switch">
-                <input type="checkbox" id="thousands-separator" checked>
-                <span class="toggle-slider"></span>
-              </label>
+            
+            <div class="settings-group">
+                <h3>Display</h3>
+                <div class="setting-item">
+                    <span class="setting-label">Decimal Precision</span>
+                    <select class="setting-select" id="decimal-precision">
+                        <option value="0">0 digits</option>
+                        <option value="2" selected>2 digits</option>
+                        <option value="4">4 digits</option>
+                        <option value="6">6 digits</option>
+                        <option value="8">8 digits</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <span class="setting-label">Thousands Separator</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="thousands-separator" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
             </div>
-          </div>
-          
-          <div class="settings-group">
-            <h3>Preferences</h3>
-            <div class="setting-item">
-              <span class="setting-label">Haptic Feedback</span>
-              <label class="toggle-switch">
-                <input type="checkbox" id="haptic-feedback">
-                <span class="toggle-slider"></span>
-              </label>
+            
+            <div class="settings-group">
+                <h3>Preferences</h3>
+                <div class="setting-item">
+                    <span class="setting-label">Haptic Feedback</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="haptic-feedback">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span class="setting-label">Sound Effects</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="sound-effects">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span class="setting-label">Auto-Save History</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="auto-save-history" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
             </div>
-            <div class="setting-item">
-              <span class="setting-label">Sound Effects</span>
-              <label class="toggle-switch">
-                <input type="checkbox" id="sound-effects">
-                <span class="toggle-slider"></span>
-              </label>
+            
+            <div class="settings-group">
+                <h3>Custom Shortcuts</h3>
+                <div class="custom-shortcuts" id="custom-shortcuts">
+                    <!-- Shortcuts will be added dynamically -->
+                </div>
+                <button class="add-shortcut">+ Add Custom Shortcut</button>
             </div>
-            <div class="setting-item">
-              <span class="setting-label">Auto-Save History</span>
-              <label class="toggle-switch">
-                <input type="checkbox" id="auto-save-history" checked>
-                <span class="toggle-slider"></span>
-              </label>
+            
+            <div class="settings-group">
+                <h3>Keyboard Shortcuts</h3>
+                <div class="keyboard-shortcuts">
+                    <div class="shortcut-row">
+                        <span class="shortcut-key">Enter</span>
+                        <span class="shortcut-description">Calculate result</span>
+                    </div>
+                    <div class="shortcut-row">
+                        <span class="shortcut-key">Esc</span>
+                        <span class="shortcut-description">Clear input</span>
+                    </div>
+                    <div class="shortcut-row">
+                        <span class="shortcut-key">Ctrl+Z</span>
+                        <span class="shortcut-description">Undo last input</span>
+                    </div>
+                </div>
             </div>
-          </div>
-          
-          <div class="settings-group">
-            <h3>Custom Shortcuts</h3>
-            <div class="custom-shortcuts" id="custom-shortcuts">
-              <!-- Shortcuts will be added dynamically -->
+        </div>
+        
+        <!-- Add history section -->
+        <div class="history">
+            <div class="history-header">
+                <h3>History</h3>
+                <div class="history-actions">
+                    <button class="export-history">Export</button>
+                    <button class="clear-history">Clear</button>
+                </div>
             </div>
-            <button class="add-shortcut">+ Add Custom Shortcut</button>
-          </div>
-          
-          <div class="settings-group">
-            <h3>Keyboard Shortcuts</h3>
-            <div class="keyboard-shortcuts">
-              <div class="shortcut-row">
-                <span class="shortcut-key">Enter</span>
-                <span class="shortcut-description">Calculate result</span>
-              </div>
-              <div class="shortcut-row">
-                <span class="shortcut-key">Esc</span>
-                <span class="shortcut-description">Clear input</span>
-              </div>
-              <div class="shortcut-row">
-                <span class="shortcut-key">Ctrl+Z</span>
-                <span class="shortcut-description">Undo last input</span>
-              </div>
-              <div class="shortcut-row">
-                <span class="shortcut-key">↑</span>
-                <span class="shortcut-description">Previous calculation</span>
-              </div>
-              <div class="shortcut-row">
-                <span class="shortcut-key">Tab</span>
-                <span class="shortcut-description">Switch calculator mode</span>
-              </div>
-            </div>
-          </div>
+            <ul class="history-list">
+                <li class="empty-history">No calculations yet</li>
+            </ul>
         </div>
         
         <!-- Add gesture hint overlay -->
         <div class="gesture-hint">
-          <div class="gesture-icon">↔️</div>
-          <div class="gesture-text">Swipe left or right to switch between calculator modes</div>
+            <div class="gesture-icon">↔️</div>
+            <div class="gesture-text">Swipe left or right to switch between calculator modes</div>
         </div>
         
         <!-- Add particle container for effects -->

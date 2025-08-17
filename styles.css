@@ -238,7 +238,7 @@ body.dark-mode {
 
 .calculator-modes, .calculator-tabs {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   border-radius: var(--button-radius);
   overflow: hidden;
   border: var(--glass-border);
@@ -248,16 +248,19 @@ body.dark-mode {
 
 .mode-btn, .tab {
   flex: 1;
-  padding: 12px 8px;
+  padding: 8px;
   border: none;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--button-bg);
   color: var(--text-color);
   cursor: pointer;
-  transition: all var(--transition-normal) ease;
+  transition: all 0.3s ease;
   font-size: 0.9rem;
-  font-weight: 500;
-  position: relative;
-  overflow: hidden;
+}
+
+.mode-btn.active, .tab.active {
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: 600;
 }
 
 .mode-btn::before, .tab::before {
@@ -279,12 +282,6 @@ body.dark-mode {
   width: 150px;
   height: 150px;
   opacity: 0.2;
-}
-
-.mode-btn.active, .tab.active {
-  background-color: var(--accent-color);
-  color: white;
-  font-weight: 600;
 }
 
 .buttons {
@@ -500,27 +497,60 @@ button:active {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .date-modifier {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.date-result {
-  background-color: var(--display-bg);
-  padding: 12px;
+.date-input {
+  padding: 10px;
   border-radius: var(--button-radius);
-  margin: 15px 0;
+  background-color: var(--display-bg);
+  border: var(--glass-border);
+  color: var(--text-color);
+  width: 100%;
+}
+
+.date-result {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: var(--display-bg);
+  border-radius: var(--button-radius);
+  color: var(--text-color);
   text-align: center;
   font-weight: 500;
-  color: var(--accent-color);
-  border: var(--glass-border);
-  min-height: 24px;
 }
 
 .mt-4 {
   margin-top: 20px;
+}
+
+.date-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--button-radius);
+  background-color: var(--display-bg);
+  border: var(--glass-border);
+  color: var(--text-color);
+}
+
+.calculate-dates, .calculate-modified-date, .convert-btn, .calculate-loan {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: var(--button-radius);
+  cursor: pointer;
+  width: 100%;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.calculate-dates:hover, .calculate-modified-date:hover, .convert-btn:hover, .calculate-loan:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
 /* Settings panel */
