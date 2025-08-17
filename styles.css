@@ -1714,17 +1714,91 @@ button {
 
 /* Fix for history section alignment */
 .history {
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 25px;
+  background-color: #000000;
+  border-radius: var(--button-radius);
+  padding: 18px;
+  max-height: 200px;
+  overflow-y: auto;
+  transition: all var(--transition-normal) ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Fix settings panel button alignment */
-.settings-panel button {
-  height: auto;
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.back-button, .close-settings {
+.history h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.history-actions {
   display: flex;
   align-items: center;
+  gap: 8px;
+}
+
+.clear-history, .export-history {
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  height: 30px;
+  min-width: 60px;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+}
+
+.clear-history:hover, .export-history:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.history-list li {
+  color: #ffffff;
+  padding: 12px 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid var(--accent-color);
+}
+
+.history-list li:hover:not(.empty-history) {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.empty-history {
+  text-align: center;
+  opacity: 0.7;
+  cursor: default;
+  padding: 16px 0 !important;
+  background-color: transparent !important;
+  border-left: none !important;
+  font-style: italic;
+  color: #cccccc !important;
 }
